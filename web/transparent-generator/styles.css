@@ -8,6 +8,8 @@
   --accent: #4a7cf3;
   --border: rgba(0, 0, 0, 0.1);
   --card-bg: rgba(255, 255, 255, 0.9);
+  --success: #166534;
+  --error: #b91c1c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +18,8 @@
     --text: #f1f5f9;
     --border: rgba(241, 245, 249, 0.1);
     --card-bg: rgba(13, 17, 23, 0.85);
+    --success: #34d399;
+    --error: #f87171;
   }
 }
 
@@ -130,6 +134,15 @@ small {
 .feedback {
   min-height: 1.2rem;
   margin: 0;
+  font-weight: 500;
+}
+
+.feedback.error {
+  color: var(--error);
+}
+
+.feedback.success {
+  color: var(--success);
 }
 
 .preview {
@@ -157,7 +170,9 @@ small {
 }
 
 .preview-canvas {
-  width: min(100%, 480px);
+  width: min(100%, var(--preview-width, 420px));
+  max-width: 100%;
+  height: var(--preview-height, auto);
   aspect-ratio: var(--aspect, 16 / 9);
   border-radius: 0.5rem;
   border: 2px dashed rgba(0, 0, 0, 0.35);
