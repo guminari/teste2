@@ -1,0 +1,237 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  --bg: #f7f7fa;
+  --text: #121212;
+  --accent: #4a7cf3;
+  --border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --success: #166534;
+  --error: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --text: #f1f5f9;
+    --border: rgba(241, 245, 249, 0.1);
+    --card-bg: rgba(13, 17, 23, 0.85);
+    --success: #34d399;
+    --error: #f87171;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+main.app {
+  width: min(960px, 100%);
+  display: grid;
+  gap: 2rem;
+}
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  header p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.controls {
+  display: grid;
+  gap: 1rem;
+  background: var(--card-bg);
+  padding: clamp(1.5rem, 2vw, 2.25rem);
+  border-radius: 1rem;
+  box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.4);
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type="number"],
+select {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  color: inherit;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: 3px solid rgba(74, 124, 243, 0.25);
+  border-color: var(--accent);
+}
+
+small {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="number"],
+  select {
+    background: rgba(24, 31, 43, 0.9);
+  }
+
+  small {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.download {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.download:hover,
+.download:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -15px var(--accent);
+}
+
+.feedback {
+  min-height: 1.2rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.feedback.error {
+  color: var(--error);
+}
+
+.feedback.success {
+  color: var(--success);
+}
+
+.preview {
+  display: grid;
+  gap: 1rem;
+  background: var(--card-bg);
+  padding: clamp(1.5rem, 2vw, 2.25rem);
+  border-radius: 1rem;
+  box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.4);
+}
+
+.preview-frame {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background: repeating-conic-gradient(
+      rgba(0, 0, 0, 0.08) 0 25%,
+      rgba(0, 0, 0, 0) 0 50%
+    )
+    0 / 20px 20px,
+    rgba(255, 255, 255, 0.7);
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+}
+
+.preview-canvas {
+  width: min(100%, var(--preview-width, 420px));
+  max-width: 100%;
+  height: var(--preview-height, auto);
+  aspect-ratio: var(--aspect, 16 / 9);
+  border-radius: 0.5rem;
+  border: 2px dashed rgba(0, 0, 0, 0.35);
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.7) 0 10px,
+      rgba(255, 255, 255, 0.1) 10px 20px
+    );
+  transition: aspect-ratio 0.2s ease, width 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .preview-frame {
+    background: repeating-conic-gradient(
+        rgba(255, 255, 255, 0.08) 0 25%,
+        rgba(0, 0, 0, 0) 0 50%
+      )
+      0 / 20px 20px,
+      rgba(13, 17, 23, 0.8);
+  }
+
+  .preview-canvas {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(13, 17, 23, 0.6) 0 10px,
+        rgba(255, 255, 255, 0.1) 10px 20px
+      );
+  }
+}
+
+.dimensions {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@media (min-width: 880px) {
+  main.app {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  header {
+    grid-column: span 2;
+  }
+
+  footer {
+    grid-column: span 2;
+  }
+}
