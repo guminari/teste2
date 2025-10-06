@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de PNG Transparente</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Gerador de PNG Transparente</h1>
+      <p>Crie arquivos PNG totalmente transparentes com proporções personalizadas ou pré-definidas.</p>
+    </header>
+
+    <section class="controls" aria-label="Controles de dimensão">
+      <div class="field">
+        <label for="ratio">Proporção</label>
+        <select id="ratio" aria-describedby="ratioHelp">
+          <option value="custom">Personalizada</option>
+          <option value="16:9">16:9 (1920×1080)</option>
+          <option value="4:3">4:3 (1600×1200)</option>
+          <option value="1:1">1:1 (1080×1080)</option>
+          <option value="9:16">9:16 (1080×1920)</option>
+        </select>
+        <small id="ratioHelp">Escolha uma proporção ou defina suas próprias dimensões.</small>
+      </div>
+
+      <div class="field">
+        <label for="width">Largura (px)</label>
+        <input type="number" id="width" min="1" max="8000" value="1920" aria-describedby="widthHelp">
+        <small id="widthHelp">Valores entre 1 e 8000 pixels.</small>
+      </div>
+
+      <div class="field">
+        <label for="height">Altura (px)</label>
+        <input type="number" id="height" min="1" max="8000" value="1080" aria-describedby="heightHelp">
+        <small id="heightHelp">Valores entre 1 e 8000 pixels.</small>
+      </div>
+
+      <button id="download" type="button" class="download">Baixar PNG</button>
+      <p class="feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="preview" aria-label="Pré-visualização da tela transparente">
+      <h2>Pré-visualização</h2>
+      <div class="preview-frame">
+        <div class="preview-canvas" role="img" aria-label="Pré-visualização das dimensões selecionadas"></div>
+      </div>
+      <p class="dimensions" aria-live="polite">1920 × 1080 px</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatível com navegadores modernos. Nenhum conteúdo é salvo.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
